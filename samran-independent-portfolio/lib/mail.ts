@@ -8,15 +8,22 @@ type MailInput = {
   text: string;
 };
 
+const DEFAULT_RECEIVER = "samrantaimoor35@gmail.com";
+
+function getReceiverEmail() {
+  return process.env.CONTACT_TO || process.env.CONTACT_RECEIVER_EMAIL || DEFAULT_RECEIVER;
+}
+
 function hasMailConfig() {
-  return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS && process.env.CONTACT_TO);
+  return Boolean(process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASS);
 }
 
 export async function sendPortfolioMail(input: MailInput) {
   if (!hasMailConfig()) {
-    console.info("Portfolio mail config missing. Message accepted but email not sent.", {
+    console.info("Portfolio mail config missing. Message was not emailed.", {
       subject: input.subject,
       replyTo: input.replyTo,
+      receiver: getReceiverEmail(),
       preview: input.text.slice(0, 200)
     });
     return { sent: false, reason: "SMTP environment variables are not configured." };
@@ -34,9 +41,11 @@ export async function sendPortfolioMail(input: MailInput) {
     }
   });
 
+  const from = process.env.CONTACT_FROM || `Samran Portfolio <${process.env.SMTP_USER}>`;
+
   await transporter.sendMail({
-    from: process.env.CONTACT_FROM || process.env.SMTP_USER,
-    to: process.env.CONTACT_TO,
+    from,
+    to: getReceiverEmail(),
     replyTo: input.replyTo,
     subject: input.subject,
     text: input.text,
@@ -50,7 +59,7 @@ export function contactHtml(name: string, email: string, message: string, subjec
   return `
     <div style="font-family:Inter,Arial,sans-serif;max-width:640px;margin:auto;color:#101828">
       <h2 style="margin-bottom:8px">New Portfolio Message</h2>
-      <p style="color:#475467;margin-top:0">A visitor sent a message from Samran's portfolio.</p>
+      <p style="color:#475467;margin-top:0">A visitor sent a message from Samran Taimoor's portfolio.</p>
       <table style="width:100%;border-collapse:collapse;margin-top:18px">
         <tr><td style="padding:10px;border-bottom:1px solid #EAECF0;color:#667085;width:120px">Name</td><td style="padding:10px;border-bottom:1px solid #EAECF0">${escapeHtml(name)}</td></tr>
         <tr><td style="padding:10px;border-bottom:1px solid #EAECF0;color:#667085">Email</td><td style="padding:10px;border-bottom:1px solid #EAECF0"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
@@ -68,7 +77,7 @@ export function requirementHtml(fields: Record<string, string>) {
   return `
     <div style="font-family:Inter,Arial,sans-serif;max-width:680px;margin:auto;color:#101828">
       <h2 style="margin-bottom:8px">New Project Requirement</h2>
-      <p style="color:#475467;margin-top:0">A potential client submitted a project request.</p>
+      <p style="color:#475467;margin-top:0">A potential client submitted a project request from Samran Taimoor's portfolio.</p>
       <table style="width:100%;border-collapse:collapse;margin-top:18px">${rows}</table>
     </div>`;
 }

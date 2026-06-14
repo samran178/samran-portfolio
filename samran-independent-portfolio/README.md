@@ -1,13 +1,11 @@
-# Samran Taimoor — Independent Full-Stack Portfolio
+# Samran Taimoor — Full-Stack Portfolio
 
-A clean, independent, production-ready portfolio project built from scratch with **Next.js**, **TypeScript**, custom CSS, and backend **API routes** for contact/project requirement forms.
-
-This project is intentionally **not tied to Replit**. It does not include `.replit`, `.local`, Replit object storage, hidden cache folders, or a Replit deployment dependency.
+A clean, production-ready portfolio project built with **Next.js**, **TypeScript**, custom CSS, and backend **API routes** for contact/project requirement forms.
 
 ## What is included
 
-- Professional landing page
-- Profile image and resume PDF
+- Professional responsive landing page
+- Profile image and current resume PDF
 - Selected project cards
 - Dynamic project case-study pages
 - Contact form backend: `/api/contact`
@@ -55,7 +53,7 @@ npm run start
 Copy `.env.example` to `.env.local`:
 
 ```bash
-cp .env.example .env.local
+copy .env.example .env.local
 ```
 
 Then fill these values:
@@ -64,13 +62,13 @@ Then fill these values:
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=465
 SMTP_SECURE=true
-SMTP_USER=your-email@gmail.com
+SMTP_USER=samrantaimoor35@gmail.com
 SMTP_PASS=your-gmail-app-password
 CONTACT_TO=samrantaimoor35@gmail.com
-CONTACT_FROM="Samran Portfolio <your-email@gmail.com>"
+CONTACT_FROM="Samran Portfolio <samrantaimoor35@gmail.com>"
 ```
 
-Without SMTP variables, the forms still validate and accept the message, but emails will not be sent. In production, add the same environment variables inside your hosting platform dashboard.
+Without SMTP variables, the forms will show an error instead of pretending the email was sent. In production, add the same environment variables inside your hosting platform dashboard.
 
 ## Editing your data
 
@@ -79,17 +77,6 @@ All portfolio content is inside:
 ```text
 data/profile.ts
 ```
-
-Update this file to edit:
-
-- Name
-- Email / phone
-- Social links
-- Skills
-- Services
-- Timeline
-- Projects
-- Project case-study details
 
 Replace these files when needed:
 
@@ -100,53 +87,36 @@ public/Samran_Taimoor_Resume.pdf
 
 ## Deployment
 
-Read the complete guide:
+Read:
 
 ```text
 docs/DEPLOYMENT.md
 ```
 
-Recommended simple path:
+Recommended path:
 
-1. Create a GitHub repository.
-2. Upload this project.
-3. Import the repository into Vercel.
-4. Add environment variables.
-5. Add your custom domain.
-6. Update `SITE_URL` and `NEXT_PUBLIC_SITE_URL` to the final domain.
+1. Commit this project to GitHub.
+2. Import the repository into Vercel.
+3. Add environment variables.
+4. Add your custom domain.
+5. Update `SITE_URL` and `NEXT_PUBLIC_SITE_URL` to the final domain.
 
 ## Folder structure
 
 ```text
 app/
   api/
-    contact/route.ts
-    requirements/route.ts
-    health/route.ts
   projects/[slug]/page.tsx
   layout.tsx
   page.tsx
   globals.css
 components/
-  ContactForm.tsx
-  Footer.tsx
-  Header.tsx
-  ProjectCard.tsx
-  RequirementForm.tsx
-  SectionTitle.tsx
 data/
-  profile.ts
 lib/
-  mail.ts
-  validators.ts
 public/
-  profile.png
-  Samran_Taimoor_Resume.pdf
-  favicon.svg
 docs/
-  DEPLOYMENT.md
 ```
 
 ## Important note
 
-A domain purchase is separate from website hosting. This project can be deployed independently, but you still need a hosting account and domain DNS access to connect your own domain.
+A domain purchase is separate from website hosting. This project can run independently, but you still need hosting and domain DNS access to connect your own domain.

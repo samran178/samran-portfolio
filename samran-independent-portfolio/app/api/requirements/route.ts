@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { requirementHtml, sendPortfolioMail } from "@/lib/mail";
 import { validateRequirement } from "@/lib/validators";
 
+const DIRECT_EMAIL = "samrantaimoor35@gmail.com";
+
 export async function POST(request: NextRequest) {
   let body: unknown;
   try {
@@ -33,16 +35,21 @@ export async function POST(request: NextRequest) {
       text: Object.entries(fields).map(([key, value]) => `${key}: ${value}`).join("\n")
     });
 
+    if (!result.sent) {
+      return NextResponse.json(
+        { error: `Email service is not configured yet. Please email Samran directly at ${DIRECT_EMAIL}.` },
+        { status: 503 }
+      );
+    }
+
     return NextResponse.json({
       ok: true,
-      emailSent: result.sent,
-      message: result.sent
-        ? "Requirement sent successfully. Samran will review it soon."
-        : "Requirement accepted. Configure SMTP in deployment settings to receive emails."
+      emailSent: true,
+      message: "Requirement sent successfully. Samran will review it soon."
     });
   } catch (error) {
     console.error("Requirement email failed", error);
-    return NextResponse.json({ error: "Requirement could not be submitted right now. Please email directly." }, { status: 500 });
+    return NextResponse.json({ error: `Requirement could not be submitted right now. Please email ${DIRECT_EMAIL} directly.` }, { status: 500 });
   }
 }
 

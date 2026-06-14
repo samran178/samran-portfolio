@@ -1,42 +1,39 @@
 # Deployment Guide
 
-This project is designed to avoid the Replit deployment lock-in. The easiest deployment path is Vercel because the project is a Next.js app with API routes.
+This portfolio is a Next.js app with API routes. The simplest path is GitHub plus Vercel.
 
-## Option A — Deploy on Vercel
+## 1. Push changes to GitHub
 
-### 1. Create a GitHub repo
+After replacing the local project files, run these commands from your existing Git repository folder:
 
-Create a new repository, for example:
-
-```text
-samran-portfolio
+```bash
+git status
+git add .
+git commit -m "Update portfolio content and email delivery"
+git push origin main
 ```
 
-Upload all project files to it.
+GitHub documents the same basic flow for adding local code: add files, commit, add/verify a remote, and push to `main`.
 
-### 2. Import into Vercel
+## 2. Import or redeploy in Vercel
+
+If the Vercel project already exists, every push to `main` should trigger a new deployment. If it does not exist yet:
 
 1. Open Vercel.
-2. Click **Add New Project**.
-3. Select your GitHub repository.
-4. Framework preset should be **Next.js**.
-5. Build command should be:
+2. Create a new project.
+3. Import the GitHub repository.
+4. Choose the Next.js framework preset.
+5. Deploy.
 
-```bash
-npm run build
+If your GitHub repository still has the source code inside the inner folder `samran-independent-portfolio`, set Vercel **Root Directory** to:
+
+```text
+samran-independent-portfolio
 ```
 
-6. Install command should be:
+## 3. Add environment variables
 
-```bash
-npm install
-```
-
-7. Deploy.
-
-### 3. Add environment variables
-
-In Vercel project settings, add these variables:
+In Vercel project settings, add:
 
 ```env
 SITE_URL=https://your-domain.com
@@ -44,78 +41,60 @@ NEXT_PUBLIC_SITE_URL=https://your-domain.com
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=465
 SMTP_SECURE=true
-SMTP_USER=your-email@gmail.com
+SMTP_USER=samrantaimoor35@gmail.com
 SMTP_PASS=your-gmail-app-password
 CONTACT_TO=samrantaimoor35@gmail.com
-CONTACT_FROM="Samran Portfolio <your-email@gmail.com>"
+CONTACT_FROM="Samran Portfolio <samrantaimoor35@gmail.com>"
 ```
 
-After adding environment variables, redeploy the project.
+Use a Gmail App Password, not the normal Gmail password. The form emails will be delivered to `samrantaimoor35@gmail.com` after these variables are configured.
 
-### 4. Add custom domain
+## 4. Add custom domain
 
-1. Go to your Vercel project.
-2. Open **Settings → Domains**.
-3. Add your domain, for example:
+1. Open your Vercel project.
+2. Go to **Settings → Domains**.
+3. Add your domain, for example `samrantaimoor.com`.
+4. Copy the DNS records Vercel shows.
+5. Add those records in your domain registrar DNS panel.
+6. Wait for verification/propagation.
 
-```text
-samrantaimoor.com
-```
+## 5. Test after deployment
 
-4. Vercel will show required DNS records.
-5. Open your domain registrar, such as GoDaddy, Namecheap, Hostinger, or Cloudflare.
-6. Add the DNS records exactly as Vercel shows.
-7. Wait for DNS propagation.
-
-### 5. Test after deployment
-
-Open these links:
+Open:
 
 ```text
 https://your-domain.com
 https://your-domain.com/api/health
-https://your-domain.com/sitemap.xml
 ```
 
-Submit the contact form. If SMTP is configured correctly, the message should arrive in `CONTACT_TO` email.
+Then submit:
 
-## Option B — Deploy static-only version
+- Quick contact form
+- Project requirement form
 
-If you do not need contact form backend, you can convert the site to static hosting. But the current project includes backend API routes, so Vercel is cleaner.
-
-## Domain cost reality
-
-This project removes Replit's monthly deployment dependency, but it cannot remove domain cost. A custom domain is bought from a registrar and must be renewed yearly. Hosting can be free/low-cost depending on the provider and usage.
+Both should send email to `samrantaimoor35@gmail.com`.
 
 ## Troubleshooting
 
-### Contact form says SMTP is not configured
+### Contact form says email service is not configured
 
-You deployed without the email variables. Add SMTP variables in the hosting dashboard and redeploy.
+Your SMTP variables are missing or incorrect. Add them in Vercel and redeploy.
 
-### Gmail SMTP does not work
+### Gmail SMTP fails
 
-Use a Gmail App Password, not your normal Gmail password. Make sure two-factor authentication is enabled on the Gmail account.
+Enable 2-Step Verification on the Gmail account and create a Gmail App Password. Do not use the normal account password.
 
 ### Domain does not open
 
-DNS can take time. Re-check the exact A/CNAME records shown by Vercel.
+Check the exact DNS records shown by Vercel. DNS changes can take time to propagate.
 
-### Build fails
+### Local build check
 
-Run locally:
+Run:
 
 ```bash
 npm install
 npm run build
 ```
 
-Then fix any error shown in the terminal before redeploying.
-
-## Maintenance checklist
-
-- Update `data/profile.ts` whenever you add new projects.
-- Replace the resume PDF in `public/` after CV updates.
-- Keep secrets only in `.env.local` or hosting dashboard variables.
-- Never push `.env.local` to GitHub.
-- Avoid adding `node_modules`, `.next`, `.vercel`, `.git`, cache folders, or platform-specific hidden files to ZIP uploads.
+Fix any terminal errors before redeploying.

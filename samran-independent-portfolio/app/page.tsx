@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { SectionTitle } from "@/components/SectionTitle";
@@ -24,11 +23,12 @@ export default function HomePage() {
             <div className="hero-actions">
               <a className="btn primary" href="#contact">Start a project</a>
               <a className="btn secondary" href={profile.github} target="_blank" rel="noreferrer">View GitHub</a>
+              <a className="btn secondary" href={profile.resume} target="_blank" rel="noreferrer">Open Resume</a>
             </div>
             <div className="social-row" aria-label="Social links">
               <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
               <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
-              <a href={`mailto:${profile.email}`}>Email</a>
+              <a href={profile.emailHref}>Email</a>
             </div>
           </div>
           <div className="hero-visual" aria-label="Profile card">
@@ -123,7 +123,7 @@ export default function HomePage() {
               copy="Use the quick message form for simple contact, or the requirement form if you already know what you want built."
             />
             <div className="contact-direct">
-              <a href={`mailto:${profile.email}`}>{profile.email}</a>
+              <a href={profile.emailHref}>{profile.email}</a>
               <a href={`tel:${profile.phone.replace(/\s/g, "")}`}>{profile.phone}</a>
               <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn profile</a>
             </div>
@@ -132,13 +132,6 @@ export default function HomePage() {
             <ContactForm />
             <RequirementForm />
           </div>
-        </section>
-
-        <section className="section-narrow cta-band">
-          <p className="eyebrow">Independent Deployment</p>
-          <h2>This project is not tied to Replit.</h2>
-          <p>Upload it to GitHub, import it into Vercel, add your domain, set email environment variables, and it can run as a normal independent portfolio.</p>
-          <Link className="btn primary" href="/projects/papersbot">View flagship case study</Link>
         </section>
       </main>
       <Footer />
