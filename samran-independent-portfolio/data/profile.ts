@@ -33,10 +33,22 @@ export const profile = {
 };
 
 export const stats = [
-  { value: "7", label: "Public GitHub repositories" },
-  { value: "2nd", label: "Best FYP Project" },
-  { value: "2026", label: "BS Software Engineering" },
-  { value: "Remote", label: "Client delivery ready" }
+  {
+    value: "Web Apps",
+    label: "Responsive full-stack interfaces with clean component structure",
+  },
+  {
+    value: "AI Systems",
+    label: "LLM integrations, RAG workflows, and automation dashboards",
+  },
+  {
+    value: "APIs",
+    label: "REST backends, database-backed workflows, and reliable data flow",
+  },
+  {
+    value: "Delivery",
+    label: "Client discovery, scoping, deployment, and post-launch support",
+  },
 ];
 
 export const skills = [
@@ -98,7 +110,7 @@ export const projects: Project[] = [
     slug: "nexus-intel",
     title: "NEXUS_INTEL",
     category: "Multi-agent Market Intelligence",
-    year: "2026",
+    year: "2025",
     featured: true,
     summary: "A multi-agent market intelligence workflow that produces competitor tables, SWOT insights, live progress updates, and downloadable research reports.",
     problem: "Manual competitor research is slow, repetitive, and difficult to turn into a clean report for decision-making.",
@@ -111,7 +123,7 @@ export const projects: Project[] = [
     slug: "documind-ai",
     title: "DocuMind-AI",
     category: "RAG Document Intelligence",
-    year: "2026",
+    year: "2024",
     featured: true,
     summary: "A PDF intelligence app that chunks documents, indexes them semantically, and answers user questions with source-aware context.",
     problem: "Large PDFs are difficult to search manually, and generic chatbot answers can drift away from the source document.",
