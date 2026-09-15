@@ -16,7 +16,7 @@ export type Project = {
 export const profile = {
   name: "Samran Taimoor",
   role: "Software Engineer",
-  headline: "Full-stack & AI systems engineer building web platforms, automation dashboards, and client-ready digital products.",
+  headline: "Full-stack and AI systems engineer building production platforms, data-heavy products, and LLM workflows.",
   location: "Gujrat, Pakistan · Remote Worldwide",
   email: "samrantaimoor35@gmail.com",
   emailHref: "mailto:samrantaimoor35@gmail.com",
@@ -26,10 +26,10 @@ export const profile = {
   facebook: "https://www.facebook.com/NovaWeb-Studio",
   studio: "NovaWeb Studio",
   website: "https://papersbot.com",
-  resume: "/Samran_Taimoor_Resume.pdf",
+  resume: "/Samran_Taimoor_Resume02.pdf",
   cgpa: "3.25 / 4.00",
   education: "BS Software Engineering · University of Gujrat · 2022–2026",
-  value: "I turn unclear business or academic workflows into structured interfaces, reliable data flow, automation, and deployable full-stack software.",
+  value: "I rebuilt and maintain a live consultancy platform, migrated its data layer to managed PostgreSQL, and ship AI products across RAG, multi-agent research, and realtime monitoring.",
 };
 
 export const stats = [
@@ -51,26 +51,35 @@ export const stats = [
   },
 ];
 
-export const skills = [
-  "React", "TypeScript", "JavaScript", "Next.js", "Vite", "Tailwind CSS", "HTML5", "CSS3", "Python", "Django", "Flask", "Express.js", "REST APIs", "SQL Server", "PostgreSQL", "ChromaDB", "CrewAI", "Tavily API", "LLM Integrations", "RAG", "WebSockets", "Web Speech API", "PDF Processing", "Git/GitHub", "Deployment"
+export const skillGroups = [
+  { label: "Product engineering", skills: ["React", "TypeScript", "Next.js", "JavaScript", "Vite", "Tailwind CSS", "HTML5", "CSS3"] },
+  { label: "Backend & data", skills: ["Python", "Django", "Flask", "Express.js", "REST APIs", "PostgreSQL", "SQL Server", "ChromaDB", "WebSockets"] },
+  { label: "AI systems", skills: ["RAG", "LangChain", "LangGraph", "CrewAI", "LLM Integrations", "Tavily API", "PDF Processing"] },
+  { label: "Delivery", skills: ["Git/GitHub", "Web Speech API", "Deployment"] }
 ];
 
 export const services = [
   {
     title: "Full-stack web platforms",
-    copy: "I build complete applications with responsive interfaces, backend APIs, clean data flow, and deployment-ready structure."
+    copy: "I build responsive applications with typed interfaces, backend APIs, relational data models, and deployment-ready structure."
   },
   {
     title: "AI automation systems",
-    copy: "I design tools that reduce manual work through document intelligence, LLM integrations, structured prompts, and workflow automation."
+    copy: "I ship RAG search, document intelligence, and multi-agent workflows with explicit source grounding and observable progress."
   },
   {
-    title: "Business websites & portfolios",
-    copy: "Through NovaWeb Studio, I create polished websites and portfolio systems for clients who need a serious online presence."
+    title: "Independent delivery",
+    copy: "Alongside product engineering, I take client systems from discovery and estimation through implementation, deployment, and maintenance."
   }
 ];
 
 export const timeline = [
+  {
+    period: "2025 — Present",
+    title: "Developer & Database Engineer",
+    org: "Marsos · Enterprise technology consultancy · Remote",
+    detail: "Rebuilt and maintain the production platform, migrated its data layer to managed PostgreSQL, and support a delivery catalogue covering 160+ third-party integrations across 20 capability categories."
+  },
   {
     period: "Aug 2025 — Present",
     title: "Freelance Software Engineer",
@@ -81,13 +90,7 @@ export const timeline = [
     period: "2022 — 2026",
     title: "BS Software Engineering",
     org: "University of Gujrat",
-    detail: "Focused on software architecture, data structures, databases, web engineering, artificial intelligence, software project management, and full-cycle application development."
-  },
-  {
-    period: "Software Exhibition",
-    title: "2nd Best FYP Project",
-    org: "PaperBot / PapersBot",
-    detail: "Recognized for an AI-assisted exam management and assessment platform designed for institutional academic workflows."
+    detail: "Focused on software architecture, data structures, databases, web engineering, artificial intelligence, and full-cycle application development. Final Year Project: PaperBot, recognized as 2nd Best FYP Project."
   }
 ];
 
@@ -98,7 +101,7 @@ export const projects: Project[] = [
     category: "AI Exam Management",
     year: "2026",
     featured: true,
-    summary: "An intelligent exam management and assessment platform for AI-assisted paper generation, publishing, student attempt flows, and grading support.",
+    summary: "Full-stack exam platform that constrains LLM-generated questions to uploaded PDFs and lecture notes, with faculty publishing, student attempts, and grading support.",
     problem: "Academic exam workflows are slow when teachers manually create papers, manage PDFs, publish exams, and review responses through separate tools.",
     solution: "PaperBot combines PDF-based content input, AI-assisted question generation, teacher-side publishing controls, student assessment flows, and automated grading suggestions.",
     impact: ["Recognized as 2nd Best FYP Project", "Teacher-side paper creation", "Student exam attempt workflow", "AI-assisted generation from PDFs and lecture notes"],
@@ -112,7 +115,7 @@ export const projects: Project[] = [
     category: "Multi-agent Market Intelligence",
     year: "2025",
     featured: true,
-    summary: "A multi-agent market intelligence workflow that produces competitor tables, SWOT insights, live progress updates, and downloadable research reports.",
+    summary: "Multi-agent market research pipeline that streams long-running job progress to the UI, persists results in PostgreSQL, and exports competitor and SWOT reports.",
     problem: "Manual competitor research is slow, repetitive, and difficult to turn into a clean report for decision-making.",
     solution: "NEXUS_INTEL coordinates research and analysis steps through an AI-assisted workflow, then presents structured intelligence in a polished interface.",
     impact: ["Competitor comparison tables", "SWOT insight generation", "Live progress updates", "Downloadable research reports"],
@@ -125,7 +128,7 @@ export const projects: Project[] = [
     category: "RAG Document Intelligence",
     year: "2024",
     featured: true,
-    summary: "A PDF intelligence app that chunks documents, indexes them semantically, and answers user questions with source-aware context.",
+    summary: "RAG PDF assistant that chunks and embeds uploads in ChromaDB, then attaches source passages so answers remain traceable to the indexed document.",
     problem: "Large PDFs are difficult to search manually, and generic chatbot answers can drift away from the source document.",
     solution: "DocuMind-AI parses PDFs, creates semantic chunks, stores vectors, retrieves relevant context, and answers questions from the uploaded content.",
     impact: ["PDF upload and parsing", "Semantic retrieval", "Source-aware responses", "RAG-based question answering"],
@@ -162,7 +165,7 @@ export const projects: Project[] = [
     title: "SignalFlow",
     category: "Realtime Monitoring Dashboard",
     year: "2026",
-    summary: "A realtime infrastructure monitoring dashboard streaming CPU, memory, request volumes, and anomaly alerts through persistent connections.",
+    summary: "Realtime monitoring dashboard that buffers WebSocket telemetry client-side to keep CPU, memory, and request-volume charts smooth under load.",
     problem: "Static dashboards are not enough when infrastructure data changes quickly and needs immediate visual feedback.",
     solution: "SignalFlow streams telemetry into live charts and alert panels so system activity can be monitored in realtime.",
     impact: ["Realtime metric stream", "CPU and memory visualization", "Request-volume tracking", "Anomaly alert interface"],

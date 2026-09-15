@@ -10,11 +10,11 @@ export function Header() {
       </Link>
       <nav className="nav-links" aria-label="Main navigation">
         <a href="/#work">Work</a>
-        <a href="/#services">Services</a>
+        <a href="/#services">Capabilities</a>
         <a href="/#experience">Experience</a>
         <a href="/#contact">Contact</a>
       </nav>
-      <a className="nav-cta" href={profile.resume} target="_blank" rel="noreferrer">Resume</a>
+      <a className="nav-cta" href="#contact">Discuss a role</a>
     </header>
   );
 }

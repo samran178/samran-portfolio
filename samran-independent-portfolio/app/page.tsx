@@ -1,11 +1,13 @@
 import Image from "next/image";
 import { Header } from "@/components/Header";
+import { HeroSceneLoader } from "@/components/HeroSceneLoader";
+import { SectionScene } from "@/components/SectionScene";
 import { Footer } from "@/components/Footer";
 import { SectionTitle } from "@/components/SectionTitle";
 import { ProjectCard } from "@/components/ProjectCard";
 import { ContactForm } from "@/components/ContactForm";
 import { RequirementForm } from "@/components/RequirementForm";
-import { profile, projects, services, skills, stats, timeline } from "@/data/profile";
+import { profile, projects, services, skillGroups, stats, timeline } from "@/data/profile";
 
 export default function HomePage() {
   const featured = projects.filter((project) => project.featured);
@@ -16,12 +18,12 @@ export default function HomePage() {
       <main>
         <section className="hero section-pad">
           <div className="hero-copy">
-            <div className="status-pill"><span /> Available for remote software projects</div>
+            <div className="status-pill"><span /> Open to remote roles and relocation</div>
             <h1>{profile.name}</h1>
             <h2>{profile.headline}</h2>
             <p>{profile.value}</p>
             <div className="hero-actions">
-              <a className="btn primary" href="#contact">Start a project</a>
+              <a className="btn primary" href="#contact">Discuss a role</a>
               <a className="btn secondary" href={profile.github} target="_blank" rel="noreferrer">View GitHub</a>
               <a className="btn secondary" href={profile.resume} target="_blank" rel="noreferrer">Open Resume</a>
             </div>
@@ -31,20 +33,26 @@ export default function HomePage() {
               <a href={profile.emailHref}>Email</a>
             </div>
           </div>
-          <div className="hero-visual" aria-label="Profile card">
-            <div className="orb orb-one" />
-            <div className="orb orb-two" />
+          <div className="hero-visual" aria-label="Interactive engineering systems visual">
+            <HeroSceneLoader />
+            <div className="wireframe wireframe-one" />
+            <div className="wireframe wireframe-two" />
+            <div className="data-orbit orbit-one" />
+            <div className="data-orbit orbit-two" />
+            <div className="system-node node-one">DB</div>
+            <div className="system-node node-two">AI</div>
+            <div className="system-node node-three">API</div>
             <div className="profile-card">
               <div className="profile-ring">
                 <Image src="/profile.png" alt={profile.name} width={260} height={260} priority />
               </div>
               <div className="profile-meta">
                 <span>{profile.role}</span>
-                <strong>{profile.location}</strong>
+                <strong>Production systems · AI workflows · Data</strong>
               </div>
             </div>
-            <div className="floating-card card-a">AI Automation</div>
-            <div className="floating-card card-b">Full-stack Systems</div>
+            <div className="floating-card card-a">LIVE / MARSOS PLATFORM</div>
+            <div className="floating-card card-b">RAG · MULTI-AGENT · REALTIME</div>
           </div>
         </section>
 
@@ -60,8 +68,8 @@ export default function HomePage() {
         <section id="work" className="section-pad">
           <SectionTitle
             eyebrow="Selected Work"
-            title="Projects built around AI, systems, and practical product delivery."
-            copy="The portfolio focuses on real engineering signals: shipped code, full-stack thinking, responsive UI, and backend-aware architecture."
+            title="Systems that hold up under real constraints."
+            copy="Selected work across production platforms, source-grounded AI, long-running workflows, and realtime interfaces."
           />
           <div className="project-grid">
             {featured.map((project) => <ProjectCard project={project} key={project.slug} />)}
@@ -72,11 +80,12 @@ export default function HomePage() {
         </section>
 
         <section id="services" className="section-pad split-section">
+          <SectionScene variant="capabilities" />
           <div>
             <SectionTitle
               eyebrow="What I Build"
-              title="Not only design — complete working products."
-              copy="A portfolio should not just look animated. It should prove the developer can ship useful systems with clean structure."
+              title="From data model to shipped interface."
+              copy="I work across the layers that make software dependable: product framing, component systems, APIs, databases, AI orchestration, and deployment."
             />
           </div>
           <div className="service-list">
@@ -91,17 +100,23 @@ export default function HomePage() {
         </section>
 
         <section className="section-pad skills-section">
-          <SectionTitle eyebrow="Stack" title="A practical, employable engineering toolkit." />
-          <div className="skill-cloud">
-            {skills.map((skill) => <span key={skill}>{skill}</span>)}
+          <SectionTitle eyebrow="Stack" title="Tools organized by the work they support." />
+          <div className="skill-groups">
+            {skillGroups.map((group) => (
+              <div className="skill-group" key={group.label}>
+                <h3>{group.label}</h3>
+                <div className="skill-cloud">{group.skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
+              </div>
+            ))}
           </div>
         </section>
 
         <section id="experience" className="section-pad split-section">
+          <SectionScene variant="experience" />
           <SectionTitle
             eyebrow="Experience"
             title="Academic foundation plus freelance delivery."
-            copy={`${profile.education}. Current focus: full-stack applications, AI automation, and client-ready deployments.`}
+            copy={`${profile.education}. Current focus: production data systems, full-stack applications, and AI automation.`}
           />
           <div className="timeline">
             {timeline.map((item) => (
@@ -116,11 +131,12 @@ export default function HomePage() {
         </section>
 
         <section id="contact" className="section-pad contact-section">
+          <SectionScene variant="contact" />
           <div className="contact-copy">
             <SectionTitle
               eyebrow="Contact"
-              title="Need a developer portfolio, business website, AI tool, or full-stack system?"
-              copy="Use the quick message form for simple contact, or the requirement form if you already know what you want built."
+              title="Hiring for a system that needs to work?"
+              copy="Send a role, technical problem, or product brief. I’m open to remote engineering work, relocation, and carefully scoped independent delivery."
             />
             <div className="contact-direct">
               <a href={profile.emailHref}>{profile.email}</a>

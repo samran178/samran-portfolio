@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { profile } from "@/data/profile";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || "http://localhost:3000";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.SITE_URL || "https://samrantaimoor.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
